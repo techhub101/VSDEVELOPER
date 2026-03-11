@@ -8,291 +8,210 @@
     <meta property="og:title" content="VS Developer | Premium Digital Engineering">
     <meta property="og:description" content="Aapka Vision, Hamara Code. Fast delivery. 100% source code ownership.">
     <meta property="og:type" content="website">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-
     <style>
-        :root {
-            --blue: #2563eb;
-            --blue-dark: #1d4ed8;
-            --navy: #0a0f1e;
-            --slate: #64748b;
-        }
+        :root{--blue:#2563eb;--blue-dark:#1d4ed8;--navy:#0a0f1e;}
+        *{box-sizing:border-box;margin:0;padding:0;}
+        body{font-family:'DM Sans',sans-serif;background:#fff;color:#0a0f1e;overflow-x:hidden;}
+        h1,h2,h3,h4,h5{font-family:'Syne',sans-serif;}
 
-        * { box-sizing: border-box; }
-
-        body {
-            font-family: 'DM Sans', sans-serif;
-            background: #ffffff;
-            color: #0a0f1e;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4, h5, .font-display { font-family: 'Syne', sans-serif; }
+        /* LOGO — identical on all screen sizes */
+        .vs-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+        .vs-logo-mark{width:38px;height:38px;background:#2563eb;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+        .vs-logo-mark span{color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:14px;line-height:1;}
+        .vs-logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:#0a0f1e;letter-spacing:-0.5px;white-space:nowrap;}
+        .vs-logo-text.light{color:#fff;}
 
         /* NAV */
-        nav {
-            position: fixed; top: 0; width: 100%; z-index: 100;
-            background: rgba(255,255,255,0.85);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(0,0,0,0.06);
-            transition: all 0.3s;
-        }
+        nav{position:fixed;top:0;width:100%;z-index:200;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,0.06);}
+        .nav-inner{max-width:1200px;margin:0 auto;padding:0 20px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+        .nav-links{display:flex;align-items:center;gap:28px;}
+        .nav-links a{font-size:14px;font-weight:500;color:#64748b;text-decoration:none;transition:color .2s;}
+        .nav-links a:hover{color:#2563eb;}
 
-        /* HERO */
-        .hero-bg {
-            background: #fff;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-bg::before {
-            content: '';
-            position: absolute;
-            top: -200px; right: -200px;
-            width: 700px; height: 700px;
-            background: radial-gradient(circle, #dbeafe 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .hero-bg::after {
-            content: '';
-            position: absolute;
-            bottom: -100px; left: -100px;
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, #eff6ff 0%, transparent 70%);
-            pointer-events: none;
-        }
+        /* HAMBURGER */
+        .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:8px;flex-shrink:0;}
+        .hamburger span{display:block;width:24px;height:2px;background:#0a0f1e;border-radius:2px;transition:all .3s;}
+        .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+        .hamburger.open span:nth-child(2){opacity:0;}
+        .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #eff6ff;
-            border: 1px solid #bfdbfe;
-            color: #2563eb;
-            padding: 6px 16px;
-            border-radius: 999px;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 28px;
-        }
-
-        .hero-badge span { 
-            width: 8px; height: 8px; 
-            border-radius: 50%; 
-            background: #2563eb;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.3); }
-        }
-
-        /* MARQUEE */
-        .marquee-track {
-            display: flex;
-            width: max-content;
-            animation: marquee 25s linear infinite;
-        }
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* CARDS */
-        .service-card {
-            border: 1px solid #e2e8f0;
-            border-radius: 24px;
-            padding: 36px 32px;
-            background: #fff;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #2563eb, #60a5fa);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-        .service-card:hover { box-shadow: 0 20px 60px -10px rgba(37,99,235,0.12); transform: translateY(-4px); }
-        .service-card:hover::before { transform: scaleX(1); }
-
-        /* PORTFOLIO */
-        .portfolio-card {
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid #e2e8f0;
-            transition: all 0.3s;
-        }
-        .portfolio-card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -15px rgba(0,0,0,0.12); }
-        .portfolio-thumb {
-            width: 100%; height: 220px;
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'Syne', sans-serif;
-            font-size: 22px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* PRICING */
-        .pricing-card {
-            border-radius: 28px;
-            padding: 40px 36px;
-            transition: all 0.4s;
-            border: 1.5px solid #e2e8f0;
-            background: #fff;
-        }
-        .pricing-card:hover { transform: translateY(-6px); }
-        .pricing-card.featured {
-            background: var(--navy);
-            border-color: var(--navy);
-            color: white;
-        }
-
-        /* FAQ */
-        .faq-item { border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; }
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
-        .faq-answer.open { max-height: 300px; }
-
-        /* STATS */
-        .stat-card {
-            background: #fff;
-            border: 1px solid #e2e8f0;
-            border-radius: 20px;
-            padding: 32px 28px;
-            text-align: center;
-        }
-
-        /* PROCESS */
-        .step-num {
-            width: 52px; height: 52px;
-            background: #eff6ff;
-            color: #2563eb;
-            border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'Syne', sans-serif;
-            font-size: 22px;
-            font-weight: 800;
-            flex-shrink: 0;
-        }
+        /* MOBILE MENU */
+        .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(255,255,255,0.98);backdrop-filter:blur(20px);border-bottom:1px solid #e2e8f0;padding:8px 16px 20px;flex-direction:column;gap:2px;z-index:199;}
+        .mobile-menu.open{display:flex;}
+        .mobile-menu a{padding:13px 16px;font-size:16px;font-weight:600;color:#0a0f1e;text-decoration:none;border-radius:10px;transition:background .15s;}
+        .mobile-menu a:hover{background:#f1f5f9;}
+        .mobile-menu .mm-wa{margin-top:8px;background:#2563eb;color:#fff!important;text-align:center;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:8px;}
 
         /* BUTTONS */
-        .btn-primary {
-            background: #2563eb;
-            color: #fff;
-            padding: 14px 32px;
-            border-radius: 14px;
-            font-weight: 600;
-            font-size: 15px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 12px 30px -8px rgba(37,99,235,0.45); }
+        .btn-primary{background:#2563eb;color:#fff;padding:13px 28px;border-radius:12px;font-weight:600;font-size:15px;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;transition:all .2s;border:none;cursor:pointer;}
+        .btn-primary:hover{background:#1d4ed8;transform:translateY(-1px);box-shadow:0 10px 28px -8px rgba(37,99,235,.45);}
+        .btn-ghost{background:transparent;color:#0a0f1e;padding:13px 28px;border-radius:12px;font-weight:600;font-size:15px;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid #e2e8f0;text-decoration:none;transition:all .2s;cursor:pointer;}
+        .btn-ghost:hover{border-color:#2563eb;color:#2563eb;}
+        .section-label{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#2563eb;display:block;margin-bottom:12px;}
 
-        .btn-ghost {
-            background: transparent;
-            color: #0a0f1e;
-            padding: 14px 32px;
-            border-radius: 14px;
-            font-weight: 600;
-            font-size: 15px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border: 1.5px solid #e2e8f0;
-            transition: all 0.2s;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .btn-ghost:hover { border-color: #2563eb; color: #2563eb; }
+        /* HERO */
+        .hero{padding:104px 20px 72px;background:#fff;position:relative;overflow:hidden;}
+        .hero::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,#dbeafe,transparent 70%);pointer-events:none;}
+        .hero::after{content:'';position:absolute;bottom:-80px;left:-80px;width:350px;height:350px;background:radial-gradient(circle,#eff6ff,transparent 70%);pointer-events:none;}
+        .hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;position:relative;z-index:1;}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;background:#eff6ff;border:1px solid #bfdbfe;color:#2563eb;padding:6px 16px;border-radius:999px;font-size:13px;font-weight:600;margin-bottom:24px;}
+        .hero-badge .dot{width:8px;height:8px;border-radius:50%;background:#2563eb;animation:blink 2s infinite;flex-shrink:0;}
+        @keyframes blink{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.3);}}
+        .hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px;}
+        .hero-stats{display:flex;gap:24px;align-items:center;flex-wrap:wrap;}
+        .stat-div{width:1px;height:36px;background:#e2e8f0;}
+        .hero-visual{background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:24px;padding:28px;border:1px solid #bfdbfe;position:relative;}
+        .browser-bar{background:#f8fafc;padding:10px 14px;display:flex;align-items:center;gap:7px;border-bottom:1px solid #e2e8f0;border-radius:14px 14px 0 0;}
 
-        /* SECTION LABEL */
-        .section-label {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: #2563eb;
-            margin-bottom: 12px;
-            display: block;
-        }
+        /* MARQUEE */
+        .marquee-wrap{background:#f8fafc;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;padding:16px 0;overflow:hidden;}
+        .marquee-track{display:flex;width:max-content;animation:marquee 25s linear infinite;}
+        @keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
-        /* FOOTER */
-        footer { background: var(--navy); color: #fff; }
+        /* SECTIONS */
+        section{padding:80px 20px;}
+        .section-inner{max-width:1200px;margin:0 auto;}
 
-        /* ANIMATIONS */
-        .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        /* GRIDS */
+        .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+        .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+        .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;}
+        .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start;}
 
-        /* MOBILE NAV */
-        .mobile-menu { display: none; }
-        .mobile-menu.open { display: flex; }
+        /* CARDS */
+        .service-card{border:1px solid #e2e8f0;border-radius:22px;padding:32px 28px;background:#fff;transition:all .3s;position:relative;overflow:hidden;}
+        .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#2563eb,#60a5fa);transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+        .service-card:hover{box-shadow:0 20px 56px -12px rgba(37,99,235,.12);transform:translateY(-4px);}
+        .service-card:hover::before{transform:scaleX(1);}
+        .icon-box{width:48px;height:48px;background:#eff6ff;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+        .p-card{border-radius:18px;overflow:hidden;border:1px solid #e2e8f0;background:#fff;transition:all .3s;}
+        .p-card:hover{transform:translateY(-5px);box-shadow:0 28px 56px -14px rgba(0,0,0,.12);}
+        .p-thumb{width:100%;height:200px;display:flex;align-items:center;justify-content:center;}
+        .step-num{width:50px;height:50px;background:#eff6ff;color:#2563eb;border-radius:13px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:14px;flex-shrink:0;}
+        .p-plan{border-radius:26px;padding:36px 32px;border:1.5px solid #e2e8f0;background:#fff;transition:all .4s;}
+        .p-plan:hover{transform:translateY(-5px);}
+        .p-plan.featured{background:var(--navy);border-color:var(--navy);color:#fff;}
+        .check-li{display:flex;align-items:flex-start;gap:12px;font-size:14px;font-weight:500;}
+        .check-box{width:20px;height:20px;min-width:20px;background:#eff6ff;border-radius:5px;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+        .check-box-dark{width:20px;height:20px;min-width:20px;background:rgba(96,165,250,.15);border-radius:5px;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+
+        /* FAQ */
+        .faq-item{border:1px solid #e2e8f0;border-radius:14px;overflow:hidden;margin-bottom:10px;}
+        .faq-btn{width:100%;padding:18px 22px;text-align:left;background:#fff;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:14px;}
+        .faq-answer{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+        .faq-answer.open{max-height:300px;}
+
+        /* CTA & FOOTER */
+        .cta-band{padding:72px 20px;background:#0a0f1e;}
+        footer{background:#060a14;padding:44px 20px 28px;}
 
         /* WA FLOAT */
-        .wa-float {
-            position: fixed; bottom: 24px; right: 24px; z-index: 999;
-            background: #25d366;
-            width: 56px; height: 56px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
-            transition: transform 0.2s;
+        .wa-float{position:fixed;bottom:22px;right:22px;z-index:999;background:#25d366;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 28px rgba(37,211,102,.4);transition:transform .2s;text-decoration:none;}
+        .wa-float:hover{transform:scale(1.1);}
+
+        /* ANIMATIONS */
+        .fade-up{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
+        .fade-up.visible{opacity:1;transform:translateY(0);}
+
+        /* ═══ TABLET 960px ═══ */
+        @media(max-width:960px){
+            .services-grid{grid-template-columns:1fr 1fr;}
+            .portfolio-grid{grid-template-columns:1fr 1fr;}
+            .process-grid{grid-template-columns:1fr 1fr;}
+            .pricing-grid{grid-template-columns:1fr;}
+            .p-plan.featured{transform:none;}
         }
-        .wa-float:hover { transform: scale(1.1); }
+
+        /* ═══ MOBILE 640px ═══ */
+        @media(max-width:640px){
+            .nav-links{display:none;}
+            .hamburger{display:flex;}
+            .nav-inner{padding:0 16px;}
+            .hero{padding:80px 16px 52px;}
+            .hero-inner{grid-template-columns:1fr;gap:0;}
+            .hero-visual{display:none;}
+            .hero-btns{flex-direction:column;gap:10px;}
+            .hero-btns a{width:100%;}
+            .hero-stats{gap:14px;}
+            .stat-div{height:28px;}
+            section{padding:52px 16px;}
+            .services-grid,.portfolio-grid,.process-grid{grid-template-columns:1fr;}
+            .service-card{padding:24px 20px;}
+            .p-plan{padding:26px 22px;}
+            .work-hd{flex-direction:column!important;align-items:flex-start!important;}
+            .work-hd a{width:100%;margin-top:6px;}
+            .cta-band{padding:52px 16px;}
+            .cta-btns{flex-direction:column;gap:10px;}
+            .cta-btns a{width:100%;}
+            .footer-top{flex-direction:column;align-items:flex-start!important;}
+            .footer-bottom{flex-direction:column;text-align:center;gap:6px;}
+            .wa-float{bottom:16px;right:16px;width:50px;height:50px;}
+            .faq-btn{padding:16px 18px;}
+            .hero-badge{font-size:12px;}
+        }
+        @media(max-width:380px){
+            .vs-logo-text{font-size:16px;}
+        }
     </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════ NAV ═══════════════════════════════════ -->
-<nav style="box-shadow: rgba(0, 0, 0, 0.07) 0px 4px 30px;">
-    <div style="max-width:1200px;margin:0 auto;padding:0 24px;height:72px;display:flex;align-items:center;justify-content:space-between;">
-        <a href="#" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-            <div style="width:38px;height:38px;background:#2563eb;border-radius:10px;display:flex;align-items:center;justify-content:center;">
-                <span style="color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:14px;">VS</span>
-            </div>
-            <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:#0a0f1e;letter-spacing:-0.5px;">DEVELOPER</span>
+<!-- ═══════════ NAV ═══════════ -->
+<nav>
+    <div class="nav-inner">
+        <!-- Logo — same on all screen sizes -->
+        <a href="#" class="vs-logo">
+            <div class="vs-logo-mark"><span>VS</span></div>
+            <span class="vs-logo-text">DEVELOPER</span>
         </a>
 
-        <div style="display:flex;align-items:center;gap:32px;" class="nav-links">
-            <a href="#services" style="font-size: 14px; font-weight: 500; color: rgb(100, 116, 139); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#2563eb'" onmouseout="this.style.color='#64748b'">Services</a>
-            <a href="#work" style="font-size: 14px; font-weight: 500; color: rgb(100, 116, 139); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#2563eb'" onmouseout="this.style.color='#64748b'">Work</a>
-            <a href="#pricing" style="font-size:14px;font-weight:500;color:#64748b;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#2563eb'" onmouseout="this.style.color='#64748b'">Pricing</a>
-            <a href="#faq" style="font-size:14px;font-weight:500;color:#64748b;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#2563eb'" onmouseout="this.style.color='#64748b'">FAQ</a>
-            <a href="https://wa.me/919321495510" class="btn-primary" style="padding:10px 22px;font-size:14px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="message-circle" aria-hidden="true" style="width:16px;height:16px;" class="lucide lucide-message-circle"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path></svg> WhatsApp Us
+        <!-- Desktop nav -->
+        <div class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#work">Work</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
+            <a href="https://wa.me/919321495510" class="btn-primary" style="padding:10px 20px;font-size:14px;">
+                <i data-lucide="message-circle" style="width:16px;height:16px;"></i> WhatsApp Us
             </a>
         </div>
+
+        <!-- Hamburger (mobile only) -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
     </div>
 </nav>
 
-<!-- ═══════════════════════════════════ HERO ═══════════════════════════════════ -->
-<section class="hero-bg" style="padding: 140px 24px 100px;">
-    <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:1;">
+<!-- Mobile slide-down menu -->
+<nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+    <a href="#services" class="mm-link">Services</a>
+    <a href="#work" class="mm-link">Work</a>
+    <a href="#pricing" class="mm-link">Pricing</a>
+    <a href="#faq" class="mm-link">FAQ</a>
+    <a href="https://wa.me/919321495510" class="mm-wa">
+        <i data-lucide="message-circle" style="width:16px;height:16px;"></i> WhatsApp Us
+    </a>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+    <div class="hero-inner">
         <div>
             <div class="hero-badge fade-up">
-                <span></span> Available for New Projects · Mumbai, India
+                <div class="dot"></div> Available for New Projects · Mumbai, India
             </div>
-            <h1 class="fade-up" style="font-size:clamp(40px,5vw,64px);font-weight:800;line-height:1.05;letter-spacing:-2px;margin:0 0 24px;">
+            <h1 class="fade-up" style="font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.05;letter-spacing:-2px;margin:0 0 20px;">
                 We Build <span style="color:#2563eb;">Fast, Scalable</span> Digital Products.
             </h1>
-            <p class="fade-up" style="font-size:18px;color:#64748b;line-height:1.7;margin:0 0 40px;max-width:480px;">
+            <p class="fade-up" style="font-size:17px;color:#64748b;line-height:1.7;margin:0 0 32px;max-width:480px;">
                 From landing pages to full-stack web apps — delivered in 15 days. 100% source code ownership. No lock-in.
             </p>
-            <div class="fade-up" style="display:flex;gap:14px;flex-wrap:wrap;">
+            <div class="hero-btns fade-up">
                 <a href="https://wa.me/919321495510" class="btn-primary">
                     <i data-lucide="zap" style="width:16px;height:16px;"></i> Start Your Project
                 </a>
@@ -300,57 +219,53 @@
                     View Our Work <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
                 </a>
             </div>
-            <div style="display:flex;gap:32px;margin-top:48px;flex-wrap:wrap;">
+            <div class="hero-stats fade-up">
                 <div>
-                    <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:#0a0f1e;">10+</div>
+                    <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;">15+</div>
                     <div style="font-size:13px;color:#94a3b8;font-weight:500;">Projects Delivered</div>
                 </div>
-                <div style="width:1px;background:#e2e8f0;"></div>
+                <div class="stat-div"></div>
                 <div>
-                    <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:#0a0f1e;">15 Days</div>
-                    <div style="font-size:13px;color:#94a3b8;font-weight:500;">Avg. Delivery Time</div>
+                    <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;">15 Days</div>
+                    <div style="font-size:13px;color:#94a3b8;font-weight:500;">Avg. Delivery</div>
                 </div>
-                <div style="width:1px;background:#e2e8f0;"></div>
+                <div class="stat-div"></div>
                 <div>
-                    <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:#0a0f1e;">100%</div>
+                    <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;">100%</div>
                     <div style="font-size:13px;color:#94a3b8;font-weight:500;">Code Ownership</div>
                 </div>
             </div>
         </div>
 
-        <!-- Hero Visual -->
-        <div class="fade-up" style="position:relative;">
-            <div style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:28px;padding:32px;border:1px solid #bfdbfe;">
-                <!-- Mock Browser Chrome -->
-                <div style="background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px -10px rgba(0,0,0,0.12);">
-                    <div style="background:#f8fafc;padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #e2e8f0;">
-                        <div style="width:10px;height:10px;background:#fc5c65;border-radius:50%;"></div>
-                        <div style="width:10px;height:10px;background:#fed330;border-radius:50%;"></div>
-                        <div style="width:10px;height:10px;background:#26de81;border-radius:50%;"></div>
-                        <div style="flex:1;background:#e2e8f0;border-radius:6px;height:24px;margin-left:8px;display:flex;align-items:center;padding:0 10px;">
-                            <span style="font-size:11px;color:#94a3b8;">yourwebsite.com</span>
-                        </div>
+        <!-- Hero visual — hidden on mobile -->
+        <div class="hero-visual fade-up">
+            <div style="background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px -10px rgba(0,0,0,.12);">
+                <div class="browser-bar">
+                    <div style="width:10px;height:10px;background:#fc5c65;border-radius:50%;flex-shrink:0;"></div>
+                    <div style="width:10px;height:10px;background:#fed330;border-radius:50%;flex-shrink:0;"></div>
+                    <div style="width:10px;height:10px;background:#26de81;border-radius:50%;flex-shrink:0;"></div>
+                    <div style="flex:1;background:#e2e8f0;border-radius:6px;height:22px;margin-left:8px;display:flex;align-items:center;padding:0 10px;">
+                        <span style="font-size:11px;color:#94a3b8;">yourwebsite.com</span>
                     </div>
-                    <div style="padding:28px 24px;background:#fff;">
-                        <div style="height:12px;background:#dbeafe;border-radius:6px;margin-bottom:10px;width:60%;"></div>
-                        <div style="height:8px;background:#f1f5f9;border-radius:4px;margin-bottom:8px;width:90%;"></div>
-                        <div style="height:8px;background:#f1f5f9;border-radius:4px;margin-bottom:8px;width:75%;"></div>
-                        <div style="height:8px;background:#f1f5f9;border-radius:4px;margin-bottom:20px;width:55%;"></div>
-                        <div style="display:flex;gap:10px;margin-bottom:20px;">
-                            <div style="background:#2563eb;border-radius:8px;padding:8px 16px;color:#fff;font-size:11px;font-weight:600;">Get Started</div>
-                            <div style="background:#f1f5f9;border-radius:8px;padding:8px 16px;color:#64748b;font-size:11px;font-weight:600;">Learn More</div>
-                        </div>
-                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
-                            <div style="background:#f8fafc;border-radius:8px;height:56px;border:1px solid #e2e8f0;"></div>
-                            <div style="background:#f8fafc;border-radius:8px;height:56px;border:1px solid #e2e8f0;"></div>
-                            <div style="background:#eff6ff;border-radius:8px;height:56px;border:1px solid #bfdbfe;"></div>
-                        </div>
+                </div>
+                <div style="padding:24px 20px;background:#fff;">
+                    <div style="height:12px;background:#dbeafe;border-radius:6px;margin-bottom:10px;width:60%;"></div>
+                    <div style="height:8px;background:#f1f5f9;border-radius:4px;margin-bottom:8px;width:90%;"></div>
+                    <div style="height:8px;background:#f1f5f9;border-radius:4px;margin-bottom:8px;width:75%;"></div>
+                    <div style="height:8px;background:#f1f5f9;border-radius:4px;margin-bottom:20px;width:55%;"></div>
+                    <div style="display:flex;gap:10px;margin-bottom:20px;">
+                        <div style="background:#2563eb;border-radius:8px;padding:8px 16px;color:#fff;font-size:11px;font-weight:600;">Get Started</div>
+                        <div style="background:#f1f5f9;border-radius:8px;padding:8px 16px;color:#64748b;font-size:11px;font-weight:600;">Learn More</div>
+                    </div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+                        <div style="background:#f8fafc;border-radius:8px;height:56px;border:1px solid #e2e8f0;"></div>
+                        <div style="background:#f8fafc;border-radius:8px;height:56px;border:1px solid #e2e8f0;"></div>
+                        <div style="background:#eff6ff;border-radius:8px;height:56px;border:1px solid #bfdbfe;"></div>
                     </div>
                 </div>
             </div>
-            <!-- Floating badge -->
-            <div style="position:absolute;bottom:-16px;left:-16px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:14px 18px;box-shadow:0 8px 30px -5px rgba(0,0,0,0.1);display:flex;align-items:center;gap:10px;">
-                <div style="width:36px;height:36px;background:#dcfce7;border-radius:10px;display:flex;align-items:center;justify-content:center;">
+            <div style="position:absolute;bottom:-14px;left:-14px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:12px 16px;box-shadow:0 8px 28px -6px rgba(0,0,0,.1);display:flex;align-items:center;gap:10px;">
+                <div style="width:36px;height:36px;background:#dcfce7;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
                     <i data-lucide="check-circle-2" style="width:18px;height:18px;color:#16a34a;"></i>
                 </div>
                 <div>
@@ -362,162 +277,132 @@
     </div>
 </section>
 
-<!-- ═══════════════════════════════════ MARQUEE ═══════════════════════════════════ -->
-<div style="background:#f8fafc;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;padding:18px 0;overflow:hidden;">
+<!-- ═══════════ MARQUEE ═══════════ -->
+<div class="marquee-wrap">
     <div class="marquee-track">
-       <span style="padding:0 40px;font-size:13px;font-weight:600;color:#94a3b8;white-space:nowrap;">⚡ React · Next.js · Node.js</span>
-        <span style="padding:0 40px;font-size:13px;font-weight:600;color:#94a3b8;white-space:nowrap;">📱 iOS & Android Apps</span>
-        <span style="padding:0 40px;font-size:13px;font-weight:600;color:#94a3b8;white-space:nowrap;">🛒 eCommerce Solutions</span>
-        <span style="padding:0 40px;font-size:13px;font-weight:600;color:#94a3b8;white-space:nowrap;">📊 Custom CRM & Dashboards</span>
-        <!-- duplicate for seamless loop -->
-        <span style="padding:0 40px;font-size:13px;font-weight:600;color:#94a3b8;white-space:nowrap;">🌐 climaxstore.vercel.app</span>
-        <span style="padding:0 40px;font-size:13px;font-weight:600;color:#94a3b8;white-space:nowrap;">🏠 shyamalhomes.com</span>
-        <span style="padding:0 40px;font-size:13px;font-weight:600;color:#94a3b8;white-space:nowrap;">⚡ React · Next.js · Node.js</span>
-        <span style="padding:0 40px;font-size:13px;font-weight:600;color:#94a3b8;white-space:nowrap;">📱 iOS & Android Apps</span>
-        <span style="padding:0 40px;font-size:13px;font-weight:600;color:#94a3b8;white-space:nowrap;">🛒 eCommerce Solutions</span>
-        <span style="padding:0 40px;font-size:13px;font-weight:600;color:#94a3b8;white-space:nowrap;">📊 Custom CRM & Dashboards</span>
+        <span style="padding:0 36px;font-size:13px;font-weight:600;color:#94a3b8;white-space:nowrap;">⚡ React · Next.js · Node.js</span>
+        <span style="padding:0 36px;font-size:13px;font-weight:600;color:#94a3b8;white-space:nowrap;">📱 iOS & Android Apps</span>
+        <span style="padding:0 36px;font-size:13px;font-weight:600;color:#94a3b8;white-space:nowrap;">🛒 eCommerce Solutions</span>
+        <span style="padding:0 36px;font-size:13px;font-weight:600;color:#94a3b8;white-space:nowrap;">📊 Custom CRM & Dashboards</span>
+        <span style="padding:0 36px;font-size:13px;font-weight:600;color:#94a3b8;white-space:nowrap;">🌐 climaxstore.vercel.app</span>
+        <span style="padding:0 36px;font-size:13px;font-weight:600;color:#94a3b8;white-space:nowrap;">🏠 shyamalhomes.com</span>
+        <span style="padding:0 36px;font-size:13px;font-weight:600;color:#94a3b8;white-space:nowrap;">⚡ React · Next.js · Node.js</span>
+        <span style="padding:0 36px;font-size:13px;font-weight:600;color:#94a3b8;white-space:nowrap;">📱 iOS & Android Apps</span>
+        <span style="padding:0 36px;font-size:13px;font-weight:600;color:#94a3b8;white-space:nowrap;">🛒 eCommerce Solutions</span>
+        <span style="padding:0 36px;font-size:13px;font-weight:600;color:#94a3b8;white-space:nowrap;">📊 Custom CRM & Dashboards</span>
     </div>
 </div>
 
-<!-- ═══════════════════════════════════ SERVICES ═══════════════════════════════════ -->
-<section id="services" style="padding:100px 24px;background:#fff;">
-    <div style="max-width:1200px;margin:0 auto;">
-        <div class="fade-up" style="margin-bottom:56px;">
+<!-- ═══════════ SERVICES ═══════════ -->
+<section id="services" style="background:#fff;">
+    <div class="section-inner">
+        <div class="fade-up" style="margin-bottom:52px;">
             <span class="section-label">What We Build</span>
-            <h2 style="font-size:clamp(32px,4vw,48px);font-weight:800;letter-spacing:-1.5px;margin:0 0 16px;">End-to-End Digital Solutions</h2>
+            <h2 style="font-size:clamp(28px,4vw,48px);font-weight:800;letter-spacing:-1.5px;margin:0 0 14px;">End-to-End Digital Solutions</h2>
             <p style="color:#64748b;font-size:17px;max-width:520px;">From your first landing page to a full enterprise platform — we handle every layer of your digital product.</p>
         </div>
-
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
+        <div class="services-grid">
             <div class="service-card fade-up">
-                <div style="width:48px;height:48px;background:#eff6ff;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
-                    <i data-lucide="layout" style="width:22px;height:22px;color:#2563eb;"></i>
-                </div>
+                <div class="icon-box"><i data-lucide="layout" style="width:22px;height:22px;color:#2563eb;"></i></div>
                 <h3 style="font-size:18px;font-weight:700;margin:0 0 10px;">Landing Pages & Websites</h3>
-                <p style="color:#64748b;font-size:14px;line-height:1.7;margin:0 0 20px;">Conversion-optimised, mobile-first websites that load in under 2 seconds. SEO-ready from day one.</p>
+                <p style="color:#64748b;font-size:14px;line-height:1.7;margin:0 0 18px;">Conversion-optimised, mobile-first websites that load in under 2 seconds. SEO-ready from day one.</p>
                 <div style="font-size:13px;color:#2563eb;font-weight:600;">From ₹12,999 →</div>
             </div>
-
             <div class="service-card fade-up">
-                <div style="width:48px;height:48px;background:#eff6ff;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
-                    <i data-lucide="shopping-bag" style="width:22px;height:22px;color:#2563eb;"></i>
-                </div>
+                <div class="icon-box"><i data-lucide="shopping-bag" style="width:22px;height:22px;color:#2563eb;"></i></div>
                 <h3 style="font-size:18px;font-weight:700;margin:0 0 10px;">eCommerce Stores</h3>
-                <p style="color:#64748b;font-size:14px;line-height:1.7;margin:0 0 20px;">Full-featured online stores with Razorpay/Stripe, inventory management, and admin dashboard.</p>
+                <p style="color:#64748b;font-size:14px;line-height:1.7;margin:0 0 18px;">Full-featured online stores with Razorpay/Stripe, inventory management, and admin dashboard.</p>
                 <div style="font-size:13px;color:#2563eb;font-weight:600;">From ₹24,999 →</div>
             </div>
-
             <div class="service-card fade-up">
-                <div style="width:48px;height:48px;background:#eff6ff;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
-                    <i data-lucide="bar-chart-3" style="width:22px;height:22px;color:#2563eb;"></i>
-                </div>
+                <div class="icon-box"><i data-lucide="bar-chart-3" style="width:22px;height:22px;color:#2563eb;"></i></div>
                 <h3 style="font-size:18px;font-weight:700;margin:0 0 10px;">Custom CRM & Dashboards</h3>
-                <p style="color:#64748b;font-size:14px;line-height:1.7;margin:0 0 20px;">Tailored business tools — lead management, analytics, reporting — built to your exact workflow.</p>
+                <p style="color:#64748b;font-size:14px;line-height:1.7;margin:0 0 18px;">Tailored business tools — lead management, analytics, reporting — built to your exact workflow.</p>
                 <div style="font-size:13px;color:#2563eb;font-weight:600;">From ₹49,999 →</div>
             </div>
-
             <div class="service-card fade-up">
-                <div style="width:48px;height:48px;background:#eff6ff;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
-                    <i data-lucide="smartphone" style="width:22px;height:22px;color:#2563eb;"></i>
-                </div>
+                <div class="icon-box"><i data-lucide="smartphone" style="width:22px;height:22px;color:#2563eb;"></i></div>
                 <h3 style="font-size:18px;font-weight:700;margin:0 0 10px;">Mobile Apps (iOS & Android)</h3>
-                <p style="color:#64748b;font-size:14px;line-height:1.7;margin:0 0 20px;">Cross-platform React Native apps with smooth UX, push notifications, and backend API integration.</p>
+                <p style="color:#64748b;font-size:14px;line-height:1.7;margin:0 0 18px;">Cross-platform React Native apps with smooth UX, push notifications, and backend API integration.</p>
                 <div style="font-size:13px;color:#2563eb;font-weight:600;">Custom Quote →</div>
             </div>
-
             <div class="service-card fade-up">
-                <div style="width:48px;height:48px;background:#eff6ff;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
-                    <i data-lucide="server" style="width:22px;height:22px;color:#2563eb;"></i>
-                </div>
+                <div class="icon-box"><i data-lucide="server" style="width:22px;height:22px;color:#2563eb;"></i></div>
                 <h3 style="font-size:18px;font-weight:700;margin:0 0 10px;">Full Stack Web Apps</h3>
-                <p style="color:#64748b;font-size:14px;line-height:1.7;margin:0 0 20px;">Scalable React + Node.js applications with REST APIs, authentication, and cloud deployment.</p>
+                <p style="color:#64748b;font-size:14px;line-height:1.7;margin:0 0 18px;">Scalable React + Node.js applications with REST APIs, authentication, and cloud deployment.</p>
                 <div style="font-size:13px;color:#2563eb;font-weight:600;">From ₹55,999 →</div>
             </div>
-
             <div class="service-card fade-up">
-                <div style="width:48px;height:48px;background:#eff6ff;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
-                    <i data-lucide="wrench" style="width:22px;height:22px;color:#2563eb;"></i>
-                </div>
+                <div class="icon-box"><i data-lucide="wrench" style="width:22px;height:22px;color:#2563eb;"></i></div>
                 <h3 style="font-size:18px;font-weight:700;margin:0 0 10px;">AMC & Support Plans</h3>
-                <p style="color:#64748b;font-size:14px;line-height:1.7;margin:0 0 20px;">Monthly retainer for updates, security patches, content changes, and uptime monitoring.</p>
+                <p style="color:#64748b;font-size:14px;line-height:1.7;margin:0 0 18px;">Monthly retainer for updates, security patches, content changes, and uptime monitoring.</p>
                 <div style="font-size:13px;color:#2563eb;font-weight:600;">From ₹1,500/mo →</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ═══════════════════════════════════ WORK / PORTFOLIO ═══════════════════════════════════ -->
-<section id="work" style="padding:100px 24px;background:#f8fafc;">
-    <div style="max-width:1200px;margin:0 auto;">
-        <div class="fade-up" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:56px;flex-wrap:gap;gap:20px;">
+<!-- ═══════════ WORK ═══════════ -->
+<section id="work" style="background:#f8fafc;">
+    <div class="section-inner">
+        <div class="fade-up work-hd" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:52px;gap:16px;flex-wrap:wrap;">
             <div>
                 <span class="section-label">Our Work</span>
-                <h2 style="font-size:clamp(32px,4vw,48px);font-weight:800;letter-spacing:-1.5px;margin:0 0 8px;">Recent Projects</h2>
+                <h2 style="font-size:clamp(28px,4vw,48px);font-weight:800;letter-spacing:-1.5px;margin:0 0 8px;">Recent Projects</h2>
                 <p style="color:#64748b;font-size:17px;">Real products, real clients, real results.</p>
             </div>
             <a href="https://wa.me/919321495510" class="btn-ghost" style="flex-shrink:0;">Request a Demo</a>
         </div>
-
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;">
-            <!-- Project 1 -->
-            <div class="portfolio-card fade-up" style="background:#fff;">
-                <div class="portfolio-thumb" style="background:linear-gradient(135deg,#1e293b,#0f172a);">
+        <div class="portfolio-grid">
+            <div class="p-card fade-up">
+                <div class="p-thumb" style="background:linear-gradient(135deg,#1e293b,#0f172a);">
                     <div style="text-align:center;color:#fff;">
                         <div style="font-size:28px;margin-bottom:8px;">🛍️</div>
-                        <div style="font-size:20px;font-weight:800;letter-spacing:-0.5px;">ClimaxStore</div>
+                        <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;letter-spacing:-.5px;">ClimaxStore</div>
                         <div style="font-size:12px;color:#94a3b8;margin-top:4px;">eCommerce Platform</div>
                     </div>
                 </div>
-                <div style="padding:24px;">
-                    <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
+                <div style="padding:22px;">
+                    <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
                         <span style="background:#eff6ff;color:#2563eb;font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;">React</span>
                         <span style="background:#eff6ff;color:#2563eb;font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;">Node.js</span>
-                        <span style="background:#eff6ff;color:#2563eb;font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;">Payment Gateway</span>
+                        <span style="background:#eff6ff;color:#2563eb;font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;">Razorpay</span>
                     </div>
                     <h3 style="font-size:17px;font-weight:700;margin:0 0 8px;">Full-Stack eCommerce Store</h3>
-                    <p style="font-size:13px;color:#64748b;line-height:1.6;margin:0 0 16px;">Product catalog, cart, Razorpay checkout, and admin panel for managing orders and inventory.</p>
-                    <a href="https://climaxstore.vercel.app" target="_blank" style="font-size:13px;color:#2563eb;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:6px;">
-                        Visit Site <i data-lucide="external-link" style="width:13px;height:13px;"></i>
-                    </a>
+                    <p style="font-size:13px;color:#64748b;line-height:1.6;margin:0 0 14px;">Product catalog, cart, checkout, and admin panel for managing orders and inventory.</p>
+                    <a href="https://climaxstore.vercel.app" target="_blank" style="font-size:13px;color:#2563eb;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px;">Visit Site <i data-lucide="external-link" style="width:13px;height:13px;"></i></a>
                 </div>
             </div>
-
-            <!-- Project 2 -->
-            <div class="portfolio-card fade-up" style="background:#fff;">
-                <div class="portfolio-thumb" style="background:linear-gradient(135deg,#1e3a5f,#0c2340);">
+            <div class="p-card fade-up">
+                <div class="p-thumb" style="background:linear-gradient(135deg,#1e3a5f,#0c2340);">
                     <div style="text-align:center;color:#fff;">
                         <div style="font-size:28px;margin-bottom:8px;">🏠</div>
-                        <div style="font-size:20px;font-weight:800;letter-spacing:-0.5px;">ShyamalHomes</div>
+                        <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;letter-spacing:-.5px;">ShyamalHomes</div>
                         <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Home Renovation Services</div>
                     </div>
                 </div>
-                <div style="padding:24px;">
-                    <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
+                <div style="padding:22px;">
+                    <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
                         <span style="background:#eff6ff;color:#2563eb;font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;">HTML/CSS</span>
                         <span style="background:#eff6ff;color:#2563eb;font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;">SEO</span>
                         <span style="background:#eff6ff;color:#2563eb;font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;">WhatsApp CTA</span>
                     </div>
                     <h3 style="font-size:17px;font-weight:700;margin:0 0 8px;">Home Renovation Services</h3>
-                    <p style="font-size:13px;color:#64748b;line-height:1.6;margin:0 0 16px;">Property listings, inquiry forms, and WhatsApp integration for a Mumbai-based Home Renovation Services.</p>
-                    <a href="https://shyamalhomes.com" target="_blank" style="font-size:13px;color:#2563eb;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:6px;">
-                        Visit Site <i data-lucide="external-link" style="width:13px;height:13px;"></i>
-                    </a>
+                    <p style="font-size:13px;color:#64748b;line-height:1.6;margin:0 0 14px;">Property listings, inquiry forms, and WhatsApp integration for a Mumbai-based Home Renovation Services.</p>
+                    <a href="https://shyamalhomes.com" target="_blank" style="font-size:13px;color:#2563eb;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px;">Visit Site <i data-lucide="external-link" style="width:13px;height:13px;"></i></a>
                 </div>
             </div>
-
-            <!-- CTA Card -->
-            <div class="portfolio-card fade-up" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:48px 36px;min-height:340px;">
-                <div style="width:60px;height:60px;background:rgba(255,255,255,0.15);border-radius:18px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;">
+            <div class="p-card fade-up" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:44px 32px;min-height:300px;">
+                <div style="width:60px;height:60px;background:rgba(255,255,255,.15);border-radius:18px;display:flex;align-items:center;justify-content:center;margin-bottom:22px;">
                     <i data-lucide="plus" style="width:28px;height:28px;color:#fff;"></i>
                 </div>
-                <h3 style="font-size:22px;font-weight:800;color:#fff;margin:0 0 12px;font-family:'Syne',sans-serif;">Your Project Here</h3>
-                <p style="font-size:14px;color:rgba(255,255,255,0.75);margin:0 0 28px;line-height:1.6;">Let's build something great together. Tell us your idea and we'll get started.</p>
+                <h3 style="font-size:22px;font-weight:800;color:#fff;margin:0 0 10px;">Your Project Here</h3>
+                <p style="font-size:14px;color:rgba(255,255,255,.75);margin:0 0 24px;line-height:1.6;">Let's build something great together.</p>
                 <a href="https://wa.me/919321495510" style="background:#fff;color:#2563eb;padding:12px 24px;border-radius:12px;font-weight:700;font-size:14px;text-decoration:none;">Start a Project</a>
             </div>
         </div>
     </div>
 </section>
-
 <!-- ═══════════════════════════════════ TESTIMONIALS ═══════════════════════════════════ -->
 <section style="padding:100px 24px;background:#fff;">
     <div style="max-width:1200px;margin:0 auto;">
@@ -560,33 +445,31 @@
         </div>
     </div>
 </section>
-
-<!-- ═══════════════════════════════════ PROCESS ═══════════════════════════════════ -->
-<section style="padding:100px 24px;background:#fff;">
-    <div style="max-width:1200px;margin:0 auto;">
-        <div class="fade-up" style="text-align:center;margin-bottom:64px;">
+<!-- ═══════════ PROCESS ═══════════ -->
+<section style="background:#fff;">
+    <div class="section-inner">
+        <div class="fade-up" style="text-align:center;margin-bottom:60px;">
             <span class="section-label">Our Process</span>
-            <h2 style="font-size:clamp(32px,4vw,48px);font-weight:800;letter-spacing:-1.5px;margin:0 0 12px;">From Idea to Live in 4 Steps</h2>
+            <h2 style="font-size:clamp(28px,4vw,48px);font-weight:800;letter-spacing:-1.5px;margin:0 0 12px;">From Idea to Live in 4 Steps</h2>
             <p style="color:#64748b;font-size:17px;">A clear, transparent workflow — no surprises, no delays.</p>
         </div>
-
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px;">
-            <div class="fade-up" style="display:flex;flex-direction:column;gap:16px;">
+        <div class="process-grid">
+            <div class="fade-up" style="display:flex;flex-direction:column;gap:14px;">
                 <div class="step-num">01</div>
                 <h3 style="font-size:18px;font-weight:700;margin:0;">Discovery Call</h3>
-                <p style="color:#64748b;font-size:14px;line-height:1.7;margin:0;">We understand your business, goals, and timeline via a WhatsApp or call consultation. Free of charge.</p>
+                <p style="color:#64748b;font-size:14px;line-height:1.7;margin:0;">We understand your business, goals, and timeline via WhatsApp or call. Free of charge.</p>
             </div>
-            <div class="fade-up" style="display:flex;flex-direction:column;gap:16px;">
+            <div class="fade-up" style="display:flex;flex-direction:column;gap:14px;">
                 <div class="step-num">02</div>
                 <h3 style="font-size:18px;font-weight:700;margin:0;">Design & Approval</h3>
-                <p style="color:#64748b;font-size:14px;line-height:1.7;margin:0;">We share wireframes and design mockups. You review, give feedback, we refine — until it's perfect.</p>
+                <p style="color:#64748b;font-size:14px;line-height:1.7;margin:0;">We share wireframes and design mockups. You review and give feedback until it's perfect.</p>
             </div>
-            <div class="fade-up" style="display:flex;flex-direction:column;gap:16px;">
+            <div class="fade-up" style="display:flex;flex-direction:column;gap:14px;">
                 <div class="step-num">03</div>
                 <h3 style="font-size:18px;font-weight:700;margin:0;">Development</h3>
-                <p style="color:#64748b;font-size:14px;line-height:1.7;margin:0;">We build with clean, documented code. Weekly progress updates via WhatsApp. Staging link provided early.</p>
+                <p style="color:#64748b;font-size:14px;line-height:1.7;margin:0;">We build with clean, documented code. Weekly progress updates via WhatsApp. Staging link early.</p>
             </div>
-            <div class="fade-up" style="display:flex;flex-direction:column;gap:16px;">
+            <div class="fade-up" style="display:flex;flex-direction:column;gap:14px;">
                 <div class="step-num">04</div>
                 <h3 style="font-size:18px;font-weight:700;margin:0;">Launch & Handoff</h3>
                 <p style="color:#64748b;font-size:14px;line-height:1.7;margin:0;">We go live, hand over full source code, and provide 3 months of free post-launch support.</p>
@@ -595,232 +478,137 @@
     </div>
 </section>
 
-<!-- ═══════════════════════════════════ PRICING ═══════════════════════════════════ -->
-<section id="pricing" style="padding:100px 24px;background:#f8fafc;">
-    <div style="max-width:1200px;margin:0 auto;">
-        <div class="fade-up" style="text-align:center;margin-bottom:64px;">
+<!-- ═══════════ PRICING ═══════════ -->
+<section id="pricing" style="background:#f8fafc;">
+    <div class="section-inner">
+        <div class="fade-up" style="text-align:center;margin-bottom:60px;">
             <span class="section-label">Pricing</span>
-            <h2 style="font-size:clamp(32px,4vw,48px);font-weight:800;letter-spacing:-1.5px;margin:0 0 12px;">Transparent. No Hidden Costs.</h2>
+            <h2 style="font-size:clamp(28px,4vw,48px);font-weight:800;letter-spacing:-1.5px;margin:0 0 12px;">Transparent. No Hidden Costs.</h2>
             <p style="color:#64748b;font-size:17px;">Quality engineering at every scale. Domain + hosting included in first year.</p>
         </div>
-
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;align-items:start;">
-            <!-- Startup -->
-            <div class="pricing-card fade-up">
-                <div style="font-size:12px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#64748b;margin-bottom:16px;">Startup MVP</div>
-                <div style="font-family:'Syne',sans-serif;font-size:42px;font-weight:800;letter-spacing:-2px;margin-bottom:4px;">₹12,999<span style="font-size:16px;font-weight:500;color:#94a3b8;"> / onwards</span></div>
-                <p style="color:#64748b;font-size:14px;margin:0 0 28px;">Perfect for new businesses launching online.</p>
-                <div style="height:1px;background:#e2e8f0;margin-bottom:28px;"></div>
-                <ul style="list-style:none;padding:0;margin:0 0 32px;display:flex;flex-direction:column;gap:14px;">
-                    <li style="display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;">
-                        <div style="width:20px;height:20px;background:#eff6ff;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i data-lucide="check" style="width:12px;height:12px;color:#2563eb;"></i></div>
-                        Landing Page (3–5 Pages)
-                    </li>
-                    <li style="display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;">
-                        <div style="width:20px;height:20px;background:#eff6ff;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i data-lucide="check" style="width:12px;height:12px;color:#2563eb;"></i></div>
-                        WhatsApp & Contact Integration
-                    </li>
-                    <li style="display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;">
-                        <div style="width:20px;height:20px;background:#eff6ff;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i data-lucide="check" style="width:12px;height:12px;color:#2563eb;"></i></div>
-                        Mobile Responsive Design
-                    </li>
-                    <li style="display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;">
-                        <div style="width:20px;height:20px;background:#eff6ff;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i data-lucide="check" style="width:12px;height:12px;color:#2563eb;"></i></div>
-                        Free Domain + Hosting (1 yr)
-                    </li>
-                    <li style="display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;">
-                        <div style="width:20px;height:20px;background:#eff6ff;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i data-lucide="check" style="width:12px;height:12px;color:#2563eb;"></i></div>
-                        3 Months Free Support
-                    </li>
+        <div class="pricing-grid">
+            <div class="p-plan fade-up">
+                <div style="font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#64748b;margin-bottom:14px;">Startup MVP</div>
+                <div style="font-family:'Syne',sans-serif;font-size:38px;font-weight:800;letter-spacing:-2px;margin-bottom:4px;">₹12,999<span style="font-size:15px;font-weight:500;color:#94a3b8;"> / onwards</span></div>
+                <p style="color:#64748b;font-size:14px;margin:0 0 22px;">Perfect for new businesses launching online.</p>
+                <div style="height:1px;background:#e2e8f0;margin-bottom:22px;"></div>
+                <ul style="list-style:none;padding:0;margin:0 0 26px;display:flex;flex-direction:column;gap:12px;">
+                    <li class="check-li"><div class="check-box"><i data-lucide="check" style="width:12px;height:12px;color:#2563eb;"></i></div>Landing Page (3–5 Pages)</li>
+                    <li class="check-li"><div class="check-box"><i data-lucide="check" style="width:12px;height:12px;color:#2563eb;"></i></div>WhatsApp & Contact Integration</li>
+                    <li class="check-li"><div class="check-box"><i data-lucide="check" style="width:12px;height:12px;color:#2563eb;"></i></div>Mobile Responsive Design</li>
+                    <li class="check-li"><div class="check-box"><i data-lucide="check" style="width:12px;height:12px;color:#2563eb;"></i></div>Free Domain + Hosting (1 yr)</li>
+                    <li class="check-li"><div class="check-box"><i data-lucide="check" style="width:12px;height:12px;color:#2563eb;"></i></div>3 Months Free Support</li>
                 </ul>
-                <a href="https://wa.me/919321495510" class="btn-ghost" style="width:100%;justify-content:center;">Get Started</a>
+                <a href="https://wa.me/919321495510" class="btn-ghost" style="width:100%;">Get Started</a>
             </div>
-
-            <!-- Business - Featured -->
-            <div class="pricing-card featured fade-up" style="transform:scale(1.02);">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-                    <div style="font-size:12px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#60a5fa;">Business Scale</div>
-                    <span style="background:#2563eb;color:#fff;font-size:10px;font-weight:700;letter-spacing:0.1em;padding:4px 10px;border-radius:999px;text-transform:uppercase;">Most Popular</span>
+            <div class="p-plan featured fade-up">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:8px;flex-wrap:wrap;">
+                    <div style="font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#60a5fa;">Business Scale</div>
+                    <span style="background:#2563eb;color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;padding:4px 10px;border-radius:999px;text-transform:uppercase;white-space:nowrap;">Most Popular</span>
                 </div>
-                <div style="font-family:'Syne',sans-serif;font-size:42px;font-weight:800;letter-spacing:-2px;margin-bottom:4px;">₹54,999<span style="font-size:16px;font-weight:500;color:#64748b;"> / onwards</span></div>
-                <p style="color:#94a3b8;font-size:14px;margin:0 0 28px;">For established businesses ready to scale.</p>
-                <div style="height:1px;background:rgba(255,255,255,0.1);margin-bottom:28px;"></div>
-                <ul style="list-style:none;padding:0;margin:0 0 32px;display:flex;flex-direction:column;gap:14px;">
-                    <li style="display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;color:#cbd5e1;">
-                        <div style="width:20px;height:20px;background:rgba(96,165,250,0.15);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i data-lucide="check" style="width:12px;height:12px;color:#60a5fa;"></i></div>
-                        Full Stack Web App (React + Node)
-                    </li>
-                    <li style="display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;color:#cbd5e1;">
-                        <div style="width:20px;height:20px;background:rgba(96,165,250,0.15);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i data-lucide="check" style="width:12px;height:12px;color:#60a5fa;"></i></div>
-                        Custom Dashboard / CRM
-                    </li>
-                    <li style="display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;color:#cbd5e1;">
-                        <div style="width:20px;height:20px;background:rgba(96,165,250,0.15);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i data-lucide="check" style="width:12px;height:12px;color:#60a5fa;"></i></div>
-                        Razorpay / Payment Integration
-                    </li>
-                    <li style="display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;color:#cbd5e1;">
-                        <div style="width:20px;height:20px;background:rgba(96,165,250,0.15);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i data-lucide="check" style="width:12px;height:12px;color:#60a5fa;"></i></div>
-                        SEO + Page Speed Optimization
-                    </li>
-                    <li style="display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;color:#cbd5e1;">
-                        <div style="width:20px;height:20px;background:rgba(96,165,250,0.15);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i data-lucide="check" style="width:12px;height:12px;color:#60a5fa;"></i></div>
-                        Admin Panel + Analytics
-                    </li>
-                    <li style="display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;color:#cbd5e1;">
-                        <div style="width:20px;height:20px;background:rgba(96,165,250,0.15);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i data-lucide="check" style="width:12px;height:12px;color:#60a5fa;"></i></div>
-                        Free Domain + Hosting (1 yr)
-                    </li>
+                <div style="font-family:'Syne',sans-serif;font-size:38px;font-weight:800;letter-spacing:-2px;margin-bottom:4px;">₹54,999<span style="font-size:15px;font-weight:500;color:#64748b;"> / onwards</span></div>
+                <p style="color:#94a3b8;font-size:14px;margin:0 0 22px;">For established businesses ready to scale.</p>
+                <div style="height:1px;background:rgba(255,255,255,.1);margin-bottom:22px;"></div>
+                <ul style="list-style:none;padding:0;margin:0 0 26px;display:flex;flex-direction:column;gap:12px;">
+                    <li class="check-li" style="color:#cbd5e1;"><div class="check-box-dark"><i data-lucide="check" style="width:12px;height:12px;color:#60a5fa;"></i></div>Full Stack Web App (React + Node)</li>
+                    <li class="check-li" style="color:#cbd5e1;"><div class="check-box-dark"><i data-lucide="check" style="width:12px;height:12px;color:#60a5fa;"></i></div>Custom Dashboard / CRM</li>
+                    <li class="check-li" style="color:#cbd5e1;"><div class="check-box-dark"><i data-lucide="check" style="width:12px;height:12px;color:#60a5fa;"></i></div>Razorpay / Payment Integration</li>
+                    <li class="check-li" style="color:#cbd5e1;"><div class="check-box-dark"><i data-lucide="check" style="width:12px;height:12px;color:#60a5fa;"></i></div>SEO + Page Speed Optimization</li>
+                    <li class="check-li" style="color:#cbd5e1;"><div class="check-box-dark"><i data-lucide="check" style="width:12px;height:12px;color:#60a5fa;"></i></div>Admin Panel + Analytics</li>
+                    <li class="check-li" style="color:#cbd5e1;"><div class="check-box-dark"><i data-lucide="check" style="width:12px;height:12px;color:#60a5fa;"></i></div>Free Domain + Hosting (1 yr)</li>
                 </ul>
-                <a href="https://wa.me/919321495510" class="btn-primary" style="width:100%;justify-content:center;">Get Started</a>
+                <a href="https://wa.me/919321495510" class="btn-primary" style="width:100%;">Get Started</a>
             </div>
-
-            <!-- Enterprise -->
-            <div class="pricing-card fade-up">
-                <div style="font-size:12px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#64748b;margin-bottom:16px;">Enterprise</div>
-                <div style="font-family:'Syne',sans-serif;font-size:42px;font-weight:800;letter-spacing:-2px;margin-bottom:4px;font-style:italic;">Let's Talk</div>
-                <p style="color:#64748b;font-size:14px;margin:0 0 28px;">Custom pricing for complex software needs.</p>
-                <div style="height:1px;background:#e2e8f0;margin-bottom:28px;"></div>
-                <ul style="list-style:none;padding:0;margin:0 0 32px;display:flex;flex-direction:column;gap:14px;">
-                    <li style="display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;">
-                        <div style="width:20px;height:20px;background:#eff6ff;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i data-lucide="check" style="width:12px;height:12px;color:#2563eb;"></i></div>
-                        iOS & Android Mobile Apps
-                    </li>
-                    <li style="display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;">
-                        <div style="width:20px;height:20px;background:#eff6ff;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i data-lucide="check" style="width:12px;height:12px;color:#2563eb;"></i></div>
-                        High-Load / Cloud Architecture
-                    </li>
-                    <li style="display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;">
-                        <div style="width:20px;height:20px;background:#eff6ff;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i data-lucide="check" style="width:12px;height:12px;color:#2563eb;"></i></div>
-                        Dedicated Project Manager
-                    </li>
-                    <li style="display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;">
-                        <div style="width:20px;height:20px;background:#eff6ff;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i data-lucide="check" style="width:12px;height:12px;color:#2563eb;"></i></div>
-                        24/7 Dedicated Support
-                    </li>
-                    <li style="display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;">
-                        <div style="width:20px;height:20px;background:#eff6ff;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i data-lucide="check" style="width:12px;height:12px;color:#2563eb;"></i></div>
-                        SLA & NDA Available
-                    </li>
+            <div class="p-plan fade-up">
+                <div style="font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#64748b;margin-bottom:14px;">Enterprise</div>
+                <div style="font-family:'Syne',sans-serif;font-size:38px;font-weight:800;letter-spacing:-2px;margin-bottom:4px;font-style:italic;">Let's Talk</div>
+                <p style="color:#64748b;font-size:14px;margin:0 0 22px;">Custom pricing for complex software needs.</p>
+                <div style="height:1px;background:#e2e8f0;margin-bottom:22px;"></div>
+                <ul style="list-style:none;padding:0;margin:0 0 26px;display:flex;flex-direction:column;gap:12px;">
+                    <li class="check-li"><div class="check-box"><i data-lucide="check" style="width:12px;height:12px;color:#2563eb;"></i></div>iOS & Android Mobile Apps</li>
+                    <li class="check-li"><div class="check-box"><i data-lucide="check" style="width:12px;height:12px;color:#2563eb;"></i></div>High-Load / Cloud Architecture</li>
+                    <li class="check-li"><div class="check-box"><i data-lucide="check" style="width:12px;height:12px;color:#2563eb;"></i></div>Dedicated Project Manager</li>
+                    <li class="check-li"><div class="check-box"><i data-lucide="check" style="width:12px;height:12px;color:#2563eb;"></i></div>24/7 Dedicated Support</li>
+                    <li class="check-li"><div class="check-box"><i data-lucide="check" style="width:12px;height:12px;color:#2563eb;"></i></div>SLA & NDA Available</li>
                 </ul>
-                <a href="https://wa.me/918850484512" class="btn-ghost" style="width:100%;justify-content:center;">Contact Sales</a>
+                <a href="https://wa.me/918850484512" class="btn-ghost" style="width:100%;">Contact Sales</a>
             </div>
         </div>
-
-        <!-- Pricing note -->
-        <p class="fade-up" style="text-align:center;font-size:13px;color:#94a3b8;margin-top:28px;">
-            💡 All prices are starting points. Final quote depends on complexity and features. No surprise charges — ever.
-        </p>
+        <p class="fade-up" style="text-align:center;font-size:13px;color:#94a3b8;margin-top:22px;">💡 All prices are starting points. Final quote depends on complexity. No surprise charges — ever.</p>
     </div>
 </section>
 
-<!-- ═══════════════════════════════════ FAQ ═══════════════════════════════════ -->
-<section id="faq" style="padding:100px 24px;background:#fff;">
+<!-- ═══════════ FAQ ═══════════ -->
+<section id="faq" style="background:#fff;">
     <div style="max-width:760px;margin:0 auto;">
-        <div class="fade-up" style="text-align:center;margin-bottom:56px;">
+        <div class="fade-up" style="text-align:center;margin-bottom:52px;">
             <span class="section-label">FAQ</span>
-            <h2 style="font-size:clamp(32px,4vw,48px);font-weight:800;letter-spacing:-1.5px;margin:0 0 12px;">Common Questions</h2>
+            <h2 style="font-size:clamp(28px,4vw,48px);font-weight:800;letter-spacing:-1.5px;margin:0 0 12px;">Common Questions</h2>
             <p style="color:#64748b;font-size:17px;">Everything you need to know before we start.</p>
         </div>
-
-        <div style="display:flex;flex-direction:column;gap:12px;" id="faq-list">
+        <div id="faq-list">
             <div class="faq-item fade-up">
-                <button class="faq-btn" style="width:100%;padding:20px 24px;text-align:left;background:#fff;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;" data-index="0">
-                    <span style="font-size:16px;font-weight:700;color:#0a0f1e;">Will I own the source code after the project?</span>
-                    <i data-lucide="plus" style="width:18px;height:18px;color:#2563eb;flex-shrink:0;" class="faq-icon"></i>
-                </button>
-                <div class="faq-answer" style="background:#f8fafc;border-top:1px solid #e2e8f0;">
-                    <p style="padding:20px 24px;margin:0;color:#64748b;font-size:15px;line-height:1.7;">Yes — 100%. Once final payment is cleared, we transfer full ownership of all source code, design assets, and hosting credentials to you. You're never locked in to us.</p>
-                </div>
+                <button class="faq-btn"><span style="font-size:15px;font-weight:700;color:#0a0f1e;line-height:1.4;">Will I own the source code after the project?</span><i data-lucide="plus" style="width:18px;height:18px;color:#2563eb;flex-shrink:0;" class="faq-icon"></i></button>
+                <div class="faq-answer" style="background:#f8fafc;border-top:1px solid #e2e8f0;"><p style="padding:18px 22px;margin:0;color:#64748b;font-size:14px;line-height:1.7;">Yes — 100%. Once final payment is cleared, we transfer full ownership of all source code, design assets, and hosting credentials to you. You're never locked in to us.</p></div>
             </div>
-
             <div class="faq-item fade-up">
-                <button class="faq-btn" style="width:100%;padding:20px 24px;text-align:left;background:#fff;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;" data-index="1">
-                    <span style="font-size:16px;font-weight:700;color:#0a0f1e;">How long does it take to deliver a project?</span>
-                    <i data-lucide="plus" style="width:18px;height:18px;color:#2563eb;flex-shrink:0;" class="faq-icon"></i>
-                </button>
-                <div class="faq-answer" style="background:#f8fafc;border-top:1px solid #e2e8f0;">
-                    <p style="padding:20px 24px;margin:0;color:#64748b;font-size:15px;line-height:1.7;">Standard business websites take 10–15 business days. Enterprise or mobile apps vary based on features, but we always agree on a timeline upfront and send weekly progress updates.</p>
-                </div>
+                <button class="faq-btn"><span style="font-size:15px;font-weight:700;color:#0a0f1e;line-height:1.4;">How long does it take to deliver a project?</span><i data-lucide="plus" style="width:18px;height:18px;color:#2563eb;flex-shrink:0;" class="faq-icon"></i></button>
+                <div class="faq-answer" style="background:#f8fafc;border-top:1px solid #e2e8f0;"><p style="padding:18px 22px;margin:0;color:#64748b;font-size:14px;line-height:1.7;">Standard business websites take 10–15 business days. Enterprise or mobile apps vary based on features, but we always agree on a timeline upfront and send weekly progress updates.</p></div>
             </div>
-
             <div class="faq-item fade-up">
-                <button class="faq-btn" style="width:100%;padding:20px 24px;text-align:left;background:#fff;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;" data-index="2">
-                    <span style="font-size:16px;font-weight:700;color:#0a0f1e;">What are the annual domain and hosting costs?</span>
-                    <i data-lucide="plus" style="width:18px;height:18px;color:#2563eb;flex-shrink:0;" class="faq-icon"></i>
-                </button>
-                <div class="faq-answer" style="background:#f8fafc;border-top:1px solid #e2e8f0;">
-                    <p style="padding:20px 24px;margin:0;color:#64748b;font-size:15px;line-height:1.7;">Domain and basic hosting are included free for the first year in our Startup and Business packages. From year two onwards, renewals typically range from ₹3,000–₹5,000/year depending on traffic and storage needs.</p>
-                </div>
+                <button class="faq-btn"><span style="font-size:15px;font-weight:700;color:#0a0f1e;line-height:1.4;">What are the annual domain and hosting costs?</span><i data-lucide="plus" style="width:18px;height:18px;color:#2563eb;flex-shrink:0;" class="faq-icon"></i></button>
+                <div class="faq-answer" style="background:#f8fafc;border-top:1px solid #e2e8f0;"><p style="padding:18px 22px;margin:0;color:#64748b;font-size:14px;line-height:1.7;">Domain and basic hosting are included free for the first year. From year two onwards, renewals typically range from ₹3,000–₹5,000/year depending on traffic and storage needs.</p></div>
             </div>
-
             <div class="faq-item fade-up">
-                <button class="faq-btn" style="width:100%;padding:20px 24px;text-align:left;background:#fff;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;" data-index="3">
-                    <span style="font-size:16px;font-weight:700;color:#0a0f1e;">Do you offer post-launch maintenance?</span>
-                    <i data-lucide="plus" style="width:18px;height:18px;color:#2563eb;flex-shrink:0;" class="faq-icon"></i>
-                </button>
-                <div class="faq-answer" style="background:#f8fafc;border-top:1px solid #e2e8f0;">
-                    <p style="padding:20px 24px;margin:0;color:#64748b;font-size:15px;line-height:1.7;">All projects come with 3 months of free post-launch support. After that, our AMC plan starts at ₹1,500/month — covering security updates, minor content changes, and regular backups.</p>
-                </div>
+                <button class="faq-btn"><span style="font-size:15px;font-weight:700;color:#0a0f1e;line-height:1.4;">Do you offer post-launch maintenance?</span><i data-lucide="plus" style="width:18px;height:18px;color:#2563eb;flex-shrink:0;" class="faq-icon"></i></button>
+                <div class="faq-answer" style="background:#f8fafc;border-top:1px solid #e2e8f0;"><p style="padding:18px 22px;margin:0;color:#64748b;font-size:14px;line-height:1.7;">All projects come with 3 months of free post-launch support. After that, our AMC plan starts at ₹1,500/month — covering security updates, minor content changes, and regular backups.</p></div>
             </div>
-
             <div class="faq-item fade-up">
-                <button class="faq-btn" style="width:100%;padding:20px 24px;text-align:left;background:#fff;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;" data-index="4">
-                    <span style="font-size:16px;font-weight:700;color:#0a0f1e;">What is the payment structure?</span>
-                    <i data-lucide="plus" style="width:18px;height:18px;color:#2563eb;flex-shrink:0;" class="faq-icon"></i>
-                </button>
-                <div class="faq-answer" style="background:#f8fafc;border-top:1px solid #e2e8f0;">
-                    <p style="padding:20px 24px;margin:0;color:#64748b;font-size:15px;line-height:1.7;">We follow a 50% upfront — 50% on delivery structure. This keeps both sides accountable and ensures you review everything before final payment. UPI, bank transfer, and Razorpay accepted.</p>
-                </div>
+                <button class="faq-btn"><span style="font-size:15px;font-weight:700;color:#0a0f1e;line-height:1.4;">What is the payment structure?</span><i data-lucide="plus" style="width:18px;height:18px;color:#2563eb;flex-shrink:0;" class="faq-icon"></i></button>
+                <div class="faq-answer" style="background:#f8fafc;border-top:1px solid #e2e8f0;"><p style="padding:18px 22px;margin:0;color:#64748b;font-size:14px;line-height:1.7;">We follow a 50% upfront — 50% on delivery structure. This keeps both sides accountable. UPI, bank transfer, and Razorpay accepted.</p></div>
             </div>
-
             <div class="faq-item fade-up">
-                <button class="faq-btn" style="width:100%;padding:20px 24px;text-align:left;background:#fff;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;" data-index="5">
-                    <span style="font-size:16px;font-weight:700;color:#0a0f1e;">Can I request changes during development?</span>
-                    <i data-lucide="plus" style="width:18px;height:18px;color:#2563eb;flex-shrink:0;" class="faq-icon"></i>
-                </button>
-                <div class="faq-answer" style="background:#f8fafc;border-top:1px solid #e2e8f0;">
-                    <p style="padding:20px 24px;margin:0;color:#64748b;font-size:15px;line-height:1.7;">Yes — up to 3 rounds of revisions are included in all packages. We share a staging preview early in development so you can request adjustments before the final build is locked.</p>
-                </div>
+                <button class="faq-btn"><span style="font-size:15px;font-weight:700;color:#0a0f1e;line-height:1.4;">Can I request changes during development?</span><i data-lucide="plus" style="width:18px;height:18px;color:#2563eb;flex-shrink:0;" class="faq-icon"></i></button>
+                <div class="faq-answer" style="background:#f8fafc;border-top:1px solid #e2e8f0;"><p style="padding:18px 22px;margin:0;color:#64748b;font-size:14px;line-height:1.7;">Yes — up to 3 rounds of revisions are included in all packages. We share a staging preview early so you can request adjustments before the final build is locked.</p></div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ═══════════════════════════════════ CTA BAND ═══════════════════════════════════ -->
-<section style="padding:80px 24px;background:#0a0f1e;">
+<!-- ═══════════ CTA BAND ═══════════ -->
+<div class="cta-band">
     <div style="max-width:800px;margin:0 auto;text-align:center;">
-        <h2 class="fade-up" style="font-size:clamp(32px,4vw,52px);font-weight:800;color:#fff;letter-spacing:-1.5px;margin:0 0 16px;">Ready to Build Something Great?</h2>
-        <p class="fade-up" style="color:#64748b;font-size:18px;margin:0 0 40px;line-height:1.6;">Drop us a WhatsApp message. Free consultation, zero pressure.</p>
-        <div class="fade-up" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+        <h2 class="fade-up" style="font-size:clamp(28px,4vw,52px);font-weight:800;color:#fff;letter-spacing:-1.5px;margin:0 0 14px;">Ready to Build Something Great?</h2>
+        <p class="fade-up" style="color:#64748b;font-size:17px;margin:0 0 36px;line-height:1.6;">Drop us a WhatsApp message. Free consultation, zero pressure.</p>
+        <div class="cta-btns fade-up" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
             <a href="https://wa.me/919321495510" class="btn-primary">
                 <i data-lucide="message-circle" style="width:18px;height:18px;"></i> WhatsApp
             </a>
-            <a href="https://wa.me/918850484512" class="btn-ghost" style="border-color:#334155;color:#94a3b8;" onmouseover="this.style.color='#fff';this.style.borderColor='#fff';" onmouseout="this.style.color='#94a3b8';this.style.borderColor='#334155';">
+            <a href="https://wa.me/918850484512" class="btn-ghost" style="border-color:#334155;color:#94a3b8;">
                 Sales
             </a>
         </div>
     </div>
-</section>
+</div>
 
-<!-- ═══════════════════════════════════ FOOTER ═══════════════════════════════════ -->
-<footer style="background:#060a14;padding:48px 24px 32px;">
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
     <div style="max-width:1200px;margin:0 auto;">
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;margin-bottom:32px;">
-            <div style="display:flex;align-items:center;gap:10px;">
-                <div style="width:34px;height:34px;background:#2563eb;border-radius:9px;display:flex;align-items:center;justify-content:center;">
-                    <span style="color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:12px;">VS</span>
-                </div>
-                <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:#fff;">DEVELOPER</span>
-            </div>
-            <div style="display:flex;gap:24px;flex-wrap:wrap;">
+        <div class="footer-top" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;margin-bottom:28px;">
+            <!-- Logo — same markup as nav -->
+            <a href="#" class="vs-logo">
+                <div class="vs-logo-mark"><span>VS</span></div>
+                <span class="vs-logo-text light">DEVELOPER</span>
+            </a>
+            <div style="display:flex;gap:22px;flex-wrap:wrap;">
                 <a href="#services" style="font-size:13px;color:#64748b;text-decoration:none;font-weight:500;">Services</a>
                 <a href="#work" style="font-size:13px;color:#64748b;text-decoration:none;font-weight:500;">Work</a>
                 <a href="#pricing" style="font-size:13px;color:#64748b;text-decoration:none;font-weight:500;">Pricing</a>
                 <a href="#faq" style="font-size:13px;color:#64748b;text-decoration:none;font-weight:500;">FAQ</a>
             </div>
         </div>
-        <div style="height:1px;background:#0f172a;margin-bottom:24px;"></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+        <div style="height:1px;background:#0f172a;margin-bottom:22px;"></div>
+        <div class="footer-bottom" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
             <p style="font-size:12px;color:#334155;margin:0;">© 2026 VS Developer. All rights reserved. Mumbai, India.</p>
             <p style="font-size:12px;color:#334155;margin:0;">Made with ❤️ in India</p>
         </div>
@@ -829,11 +617,25 @@
 
 <!-- WhatsApp Float -->
 <a href="https://wa.me/919321495510" class="wa-float" title="Chat on WhatsApp">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
 <script>
 lucide.createIcons();
+
+// Hamburger
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+});
+document.querySelectorAll('.mm-link, .mm-wa').forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+    });
+});
 
 // FAQ Accordion
 document.querySelectorAll('.faq-btn').forEach(btn => {
@@ -841,39 +643,31 @@ document.querySelectorAll('.faq-btn').forEach(btn => {
         const answer = btn.nextElementSibling;
         const icon = btn.querySelector('.faq-icon');
         const isOpen = answer.classList.contains('open');
-
         document.querySelectorAll('.faq-answer').forEach(el => el.classList.remove('open'));
-        document.querySelectorAll('.faq-icon').forEach(el => {
-            el.setAttribute('data-lucide', 'plus');
-        });
+        document.querySelectorAll('.faq-icon').forEach(el => el.setAttribute('data-lucide','plus'));
         lucide.createIcons();
-
         if (!isOpen) {
             answer.classList.add('open');
-            icon.setAttribute('data-lucide', 'minus');
+            icon.setAttribute('data-lucide','minus');
             lucide.createIcons();
         }
     });
 });
 
-// Scroll Animations
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+// Scroll animations
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
         if (entry.isIntersecting) {
-            setTimeout(() => {
-                entry.target.classList.add('visible');
-            }, 80);
+            setTimeout(() => entry.target.classList.add('visible'), 80);
             observer.unobserve(entry.target);
         }
     });
 }, { threshold: 0.1 });
-
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-// Nav active state
+// Nav shadow
 window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    nav.style.boxShadow = window.scrollY > 20 ? '0 4px 30px rgba(0,0,0,0.07)' : 'none';
+    document.querySelector('nav').style.boxShadow = window.scrollY > 20 ? '0 4px 30px rgba(0,0,0,.07)' : 'none';
 });
 </script>
 </body>
