@@ -633,8 +633,7 @@
 </section>
 
 
-<!-- ═══════════ PROCESS ═══════════ -->
-<!-- ═══════════ PROCESS SECTION (CENTERED NUMBERS) ═══════════ -->
+<!-- ═══════════ PROCESS SECTION ═══════════ -->
 <section style="background:#030712; padding: 100px 20px; border-top: 1px solid #111726;">
     <style>
         .proc-grid {
@@ -652,8 +651,8 @@
             padding: 36px 24px;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Centers items horizontally */
-            text-align: center;  /* Centers text inside the card */
+            align-items: center;
+            text-align: center;
             gap: 16px;
             position: relative;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -665,7 +664,6 @@
             box-shadow: 0 16px 36px -10px rgba(37, 99, 235, 0.2);
         }
 
-        /* CENTERED STEP NUMBER */
         .proc-num {
             width: 52px;
             height: 52px;
@@ -680,7 +678,7 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            margin: 0 auto 4px auto; /* Centered margin */
+            margin: 0 auto 4px auto;
             box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15);
         }
 
@@ -709,11 +707,13 @@
             .proc-grid {
                 grid-template-columns: 1fr;
             }
+            .proc-card {
+                padding: 28px 20px;
+            }
         }
     </style>
 
     <div style="max-width: 1240px; margin: 0 auto;">
-        
         <!-- HEADER -->
         <div class="fade-up" style="text-align:center; margin-bottom: 56px;">
             <span style="font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #38bdf8; display: block; margin-bottom: 12px;">OUR WORKFLOW</span>
@@ -727,42 +727,34 @@
 
         <!-- PROCESS GRID -->
         <div class="proc-grid">
-            
-            <!-- STEP 01 -->
             <div class="proc-card fade-up">
                 <div class="proc-num">01</div>
                 <h3 class="proc-title">Discovery Call</h3>
                 <p class="proc-desc">We discuss your project goals, features, and timeline via WhatsApp or phone call. 100% Free consultation.</p>
             </div>
 
-            <!-- STEP 02 -->
             <div class="proc-card fade-up">
                 <div class="proc-num">02</div>
                 <h3 class="proc-title">Design & Wireframes</h3>
                 <p class="proc-desc">We create modern UI wireframes and design mockups for your approval before writing code.</p>
             </div>
 
-            <!-- STEP 03 -->
             <div class="proc-card fade-up">
                 <div class="proc-num">03</div>
                 <h3 class="proc-title">Development</h3>
                 <p class="proc-desc">We code your site fast, clean with regular WhatsApp progress updates.</p>
             </div>
 
-            <!-- STEP 04 -->
             <div class="proc-card fade-up">
                 <div class="proc-num">04</div>
                 <h3 class="proc-title">Launch & Ownership</h3>
                 <p class="proc-desc">We connect your domain, deploy live, hand over full 100% source code, and provide ongoing support.</p>
             </div>
-
         </div>
-
     </div>
 </section>
 
-<!-- ═══════════ PRICING ═══════════ -->
-<!-- ═══════════ ULTIMATE PRICING SECTION ═══════════ -->
+<!-- ═══════════ PRICING SECTION ═══════════ -->
 <section id="pricing" style="background:#030712; padding: 100px 20px; position: relative; overflow: hidden;">
     <style>
         /* DESKTOP GRID */
@@ -775,447 +767,6 @@
             margin: 0 auto;
         }
 
-        .pro-card {
-            background: #0b0f19;
-            border: 1px solid #1e293b;
-            border-radius: 28px;
-            padding: 40px 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-        }
-
-        .pro-card:hover {
-            transform: translateY(-8px);
-            border-color: #3b82f6;
-            box-shadow: 0 20px 40px -15px rgba(37, 99, 235, 0.25);
-        }
-
-        /* GOLD FEATURED CARD */
-        .pro-card.gold-featured {
-            background: #0f1629;
-            border: 2px solid #f59e0b;
-            box-shadow: 0 20px 50px -10px rgba(245, 158, 11, 0.2);
-            transform: scale(1.03);
-        }
-
-        .pro-card.gold-featured:hover {
-            transform: scale(1.03) translateY(-8px);
-            box-shadow: 0 30px 60px -10px rgba(245, 158, 11, 0.3);
-        }
-
-        /* BADGES */
-        .badge-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            padding: 6px 16px;
-            border-radius: 999px;
-            text-transform: uppercase;
-        }
-
-        .b-bronze { background: #26160c; color: #f97316; border: 1px solid #7c2d12; }
-        .b-gold { background: #2e2107; color: #f59e0b; border: 1px solid #b45309; }
-        .b-platinum { background: #0c2438; color: #38bdf8; border: 1px solid #0369a1; }
-
-        .price-num {
-            font-family: 'Syne', sans-serif;
-            font-size: 44px;
-            font-weight: 800;
-            color: #ffffff;
-            margin: 12px 0 4px;
-            letter-spacing: -1.5px;
-            line-height: 1;
-        }
-
-        .price-desc {
-            font-size: 13px;
-            color: #94a3b8;
-            font-weight: 500;
-            margin-bottom: 24px;
-        }
-
-        .pro-divider {
-            height: 1px;
-            background: linear-gradient(90deg, #1e293b, transparent);
-            margin-bottom: 24px;
-        }
-
-        /* FEATURE ITEMS */
-        .feat-list {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 36px;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            text-align: left;
-        }
-
-        .feat-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            font-size: 14px;
-            font-weight: 500;
-            color: #e2e8f0;
-            line-height: 1.5;
-        }
-
-        .feat-item.off {
-            color: #475569;
-            text-decoration: line-through;
-        }
-
-        .check-icon {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #102a45;
-            color: #38bdf8;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-
-        .gold-featured .check-icon {
-            background: #2e2107;
-            color: #f59e0b;
-        }
-
-        /* BUTTONS */
-        .btn-pro {
-            background: #2563eb;
-            color: #ffffff !important;
-            padding: 16px 28px;
-            border-radius: 14px;
-            font-weight: 800;
-            font-size: 14px;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            text-decoration: none;
-            transition: all 0.25s ease;
-            box-shadow: 0 8px 20px -4px rgba(37, 99, 235, 0.4);
-        }
-
-        .btn-pro:hover {
-            background: #1d4ed8;
-            box-shadow: 0 12px 28px -4px rgba(37, 99, 235, 0.6);
-            transform: translateY(-2px);
-        }
-
-        .btn-gold {
-            background: #f59e0b;
-            color: #090d16 !important;
-            padding: 16px 28px;
-            border-radius: 14px;
-            font-weight: 800;
-            font-size: 14px;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            text-decoration: none;
-            transition: all 0.25s ease;
-            box-shadow: 0 8px 20px -4px rgba(245, 158, 11, 0.4);
-        }
-
-        .btn-gold:hover {
-            background: #d97706;
-            box-shadow: 0 12px 28px -4px rgba(245, 158, 11, 0.6);
-            transform: translateY(-2px);
-        }
-
-        /* RESPONSIVE AUTO SLIDER */
-        @media (max-width: 960px) {
-            .pro-pricing-grid {
-                display: flex;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                gap: 18px;
-                padding: 10px 10px 30px;
-                scroll-behavior: smooth;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .pro-card {
-                min-width: 88%;
-                scroll-snap-align: center;
-                flex-shrink: 0;
-            }
-
-            .pro-card.gold-featured {
-                transform: none;
-            }
-
-            .pro-card.gold-featured:hover {
-                transform: none;
-            }
-
-            .slider-indicators {
-                display: flex !important;
-            }
-        }
-    </style>
-
-    <div style="max-width: 1240px; margin: 0 auto; text-align: center;">
-        
-        <!-- HEADER -->
-<!-- ═══════════ ULTIMATE PRICING SECTION ═══════════ -->
-<section id="pricing" style="background:#030712; padding: 100px 20px; position: relative; overflow: hidden;">
-    <style>
-        /* DESKTOP GRID */
-        .pro-pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
-            align-items: stretch;
-            max-width: 1240px;
-            margin: 0 auto;
-        }
-
-        .pro-card {
-            background: #0b0f19;
-            border: 1px solid #1e293b;
-            border-radius: 28px;
-            padding: 40px 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-        }
-
-        .pro-card:hover {
-            transform: translateY(-8px);
-            border-color: #3b82f6;
-            box-shadow: 0 20px 40px -15px rgba(37, 99, 235, 0.25);
-        }
-
-        /* GOLD FEATURED CARD */
-        .pro-card.gold-featured {
-            background: #0f1629;
-            border: 2px solid #f59e0b;
-            box-shadow: 0 20px 50px -10px rgba(245, 158, 11, 0.2);
-            transform: scale(1.03);
-        }
-
-        .pro-card.gold-featured:hover {
-            transform: scale(1.03) translateY(-8px);
-            box-shadow: 0 30px 60px -10px rgba(245, 158, 11, 0.3);
-        }
-
-        /* BADGES */
-        .badge-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            padding: 6px 16px;
-            border-radius: 999px;
-            text-transform: uppercase;
-        }
-
-        .b-bronze { background: #26160c; color: #f97316; border: 1px solid #7c2d12; }
-        .b-gold { background: #2e2107; color: #f59e0b; border: 1px solid #b45309; }
-        .b-platinum { background: #0c2438; color: #38bdf8; border: 1px solid #0369a1; }
-
-        .price-num {
-            font-family: 'Syne', sans-serif;
-            font-size: 44px;
-            font-weight: 800;
-            color: #ffffff;
-            margin: 12px 0 4px;
-            letter-spacing: -1.5px;
-            line-height: 1;
-        }
-
-        .price-desc {
-            font-size: 13px;
-            color: #94a3b8;
-            font-weight: 500;
-            margin-bottom: 24px;
-        }
-
-        .pro-divider {
-            height: 1px;
-            background: linear-gradient(90deg, #1e293b, transparent);
-            margin-bottom: 24px;
-        }
-
-        /* FEATURE ITEMS */
-        .feat-list {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 36px;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            text-align: left;
-        }
-
-        .feat-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            font-size: 14px;
-            font-weight: 500;
-            color: #e2e8f0;
-            line-height: 1.5;
-        }
-
-        .feat-item.off {
-            color: #475569;
-            text-decoration: line-through;
-        }
-
-        .check-icon {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #102a45;
-            color: #38bdf8;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-
-        .gold-featured .check-icon {
-            background: #2e2107;
-            color: #f59e0b;
-        }
-
-        /* BUTTONS */
-        .btn-pro {
-            background: #2563eb;
-            color: #ffffff !important;
-            padding: 16px 28px;
-            border-radius: 14px;
-            font-weight: 800;
-            font-size: 14px;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            text-decoration: none;
-            transition: all 0.25s ease;
-            box-shadow: 0 8px 20px -4px rgba(37, 99, 235, 0.4);
-        }
-
-        .btn-pro:hover {
-            background: #1d4ed8;
-            box-shadow: 0 12px 28px -4px rgba(37, 99, 235, 0.6);
-            transform: translateY(-2px);
-        }
-
-        .btn-gold {
-            background: #f59e0b;
-            color: #090d16 !important;
-            padding: 16px 28px;
-            border-radius: 14px;
-            font-weight: 800;
-            font-size: 14px;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            text-decoration: none;
-            transition: all 0.25s ease;
-            box-shadow: 0 8px 20px -4px rgba(245, 158, 11, 0.4);
-        }
-
-        .btn-gold:hover {
-            background: #d97706;
-            box-shadow: 0 12px 28px -4px rgba(245, 158, 11, 0.6);
-            transform: translateY(-2px);
-        }
-
-        /* NAVIGATION ARROWS */
-        .arrow-nav-btn {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: #0b0f19;
-            border: 1px solid #1e293b;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .arrow-nav-btn:hover {
-            background: #1d4ed8;
-            border-color: #2563eb;
-            transform: scale(1.05);
-        }
-
-        /* RESPONSIVE AUTO SLIDER */
-        @media (max-width: 960px) {
-            .pro-pricing-grid {
-                display: flex;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                gap: 18px;
-                padding: 10px 10px 30px;
-                scroll-behavior: smooth;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .pro-card {
-                min-width: 88%;
-                scroll-snap-align: center;
-                flex-shrink: 0;
-            }
-
-            .pro-card.gold-featured {
-                transform: none;
-            }
-
-            .pro-card.gold-featured:hover {
-                transform: none;
-            }
-
-            .arrow-nav-wrap {
-                display: flex !important;
-            }
-        }
-    </style>
-
-    <div style="max-width: 1240px; margin: 0 auto; text-align: center;">
-        
-<!-- ═══════════ ULTIMATE PRICING SECTION ═══════════ -->
-<section id="pricing" style="background:#030712; padding: 100px 20px; position: relative; overflow: hidden;">
-    <style>
-        /* DESKTOP GRID */
-        .pro-pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
-            align-items: stretch;
-            max-width: 1240px;
-            margin: 0 auto;
-        }
-
-        /* HIDE SCROLLBARS */
         .pro-pricing-grid::-webkit-scrollbar { display: none; }
         .pro-pricing-grid { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -1381,7 +932,7 @@
             transform: translateY(-2px);
         }
 
-        /* PRICING STAGE CONTAINER (FIXES CENTER POSITIONING) */
+        /* PRICING STAGE CONTAINER */
         .pricing-stage {
             position: relative;
             max-width: 1240px;
@@ -1393,8 +944,8 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: #0d1322;
             border: 1px solid #2563eb;
@@ -1413,23 +964,23 @@
             transform: translateY(-50%) scale(1.1);
         }
 
-        .side-arrow-btn.prev-btn { left: -5px; }
-        .side-arrow-btn.next-btn { right: -5px; }
+        .side-arrow-btn.prev-btn { left: 4px; }
+        .side-arrow-btn.next-btn { right: 4px; }
 
-        /* RESPONSIVE AUTO SLIDER */
+        /* MOBILE SLIDER RESPONSIVE FIXES */
         @media (max-width: 960px) {
             .pro-pricing-grid {
                 display: flex;
                 overflow-x: auto;
                 scroll-snap-type: x mandatory;
-                gap: 18px;
-                padding: 10px 20px 30px;
+                gap: 16px;
+                padding: 10px 10px 30px;
                 scroll-behavior: smooth;
                 -webkit-overflow-scrolling: touch;
             }
 
             .pro-card {
-                min-width: 85%;
+                min-width: 86%;
                 scroll-snap-align: center;
                 flex-shrink: 0;
             }
@@ -1444,6 +995,19 @@
 
             .side-arrow-btn {
                 display: flex !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            #pricing {
+                padding: 60px 12px !important;
+            }
+            .pro-card {
+                min-width: 92%;
+                padding: 32px 20px;
+            }
+            .price-num {
+                font-size: 38px;
             }
         }
     </style>
@@ -1461,14 +1025,14 @@
             </p>
         </div>
 
-        <!-- PRICING STAGE (STORES CARDS + PERFECTLY CENTERED SIDE ARROWS) -->
+        <!-- PRICING STAGE -->
         <div class="pricing-stage">
             
             <button class="side-arrow-btn prev-btn" id="prevPricingBtn" aria-label="Previous Plan">
-                <i data-lucide="chevron-left" style="width:22px;height:22px;"></i>
+                <i data-lucide="chevron-left" style="width:20px;height:20px;"></i>
             </button>
             <button class="side-arrow-btn next-btn" id="nextPricingBtn" aria-label="Next Plan">
-                <i data-lucide="chevron-right" style="width:22px;height:22px;"></i>
+                <i data-lucide="chevron-right" style="width:20px;height:20px;"></i>
             </button>
 
             <!-- CAROUSEL / GRID -->
@@ -1495,7 +1059,7 @@
                         </ul>
                     </div>
 
-                    <a href="https://wa.me/919619203151?text=Hi,%20I%20want%20to%20book%20the%20BRONZE%20plan" class="btn-pro">
+                    <a href="https://wa.me/919619203151?text=Hi,%20I%20want%20to%20book%20the%20BRONZE%20plan" class="btn-pro" target="_blank">
                         <i data-lucide="message-circle" style="width:18px;height:18px;"></i> Select Bronze
                     </a>
                 </div>
@@ -1527,7 +1091,7 @@
                         </ul>
                     </div>
 
-                    <a href="https://wa.me/919619203151?text=Hi,%20I%20want%20to%20book%20the%20GOLD%20plan" class="btn-gold">
+                    <a href="https://wa.me/919619203151?text=Hi,%20I%20want%20to%20book%20the%20GOLD%20plan" class="btn-gold" target="_blank">
                         <i data-lucide="zap" style="width:18px;height:18px;"></i> Get Started Now
                     </a>
                 </div>
@@ -1556,7 +1120,7 @@
                         </ul>
                     </div>
 
-                    <a href="https://wa.me/919619203151?text=Hi,%20I%20want%20to%20book%20the%20PLATINUM%20plan" class="btn-pro">
+                    <a href="https://wa.me/919619203151?text=Hi,%20I%20want%20to%20book%20the%20PLATINUM%20plan" class="btn-pro" target="_blank">
                         <i data-lucide="message-circle" style="width:18px;height:18px;"></i> Select Platinum
                     </a>
                 </div>
@@ -1567,7 +1131,7 @@
     </div>
 </section>
 
-<!-- SCRIPT -->
+<!-- SCRIPT FOR SLIDER -->
 <script>
 (function() {
     const slider = document.getElementById('proSlider');
@@ -1689,12 +1253,30 @@
             box-shadow: 0 15px 32px -5px rgba(37, 99, 235, 0.6);
         }
 
+        /* MOBILE RESPONSIVE FIXES */
         @media (max-width: 640px) {
+            .cta-band {
+                padding: 60px 16px !important;
+            }
             .cta-box {
-                padding: 40px 20px;
+                padding: 36px 20px;
+                border-radius: 20px;
+            }
+            .cta-box h2 {
+                font-size: 28px !important;
+                letter-spacing: -0.8px !important;
+            }
+            .cta-box p {
+                font-size: 15px !important;
+                margin-bottom: 24px !important;
+            }
+            .cta-btns {
+                width: 100%;
             }
             .cta-btn-wa {
                 width: 100%;
+                padding: 14px 20px;
+                font-size: 14px;
             }
         }
     </style>
@@ -1707,14 +1289,13 @@
             Drop us a WhatsApp message. Free consultation, zero pressure, and quick responses.
         </p>
         <div class="cta-btns" style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
-            <a href="https://wa.me/919619203151?text=Hi,%20I’m%20planning%20a%20serious%20website%20project%20and%20would%20like%20to%20discuss%20the%20details.%20Can%20we%20connect?" class="cta-btn-wa">
+            <a href="https://wa.me/919619203151?text=Hi,%20I’m%20planning%20a%20serious%20website%20project%20and%20would%20like%20to%20discuss%20the%20details.%20Can%20we%20connect?" class="cta-btn-wa" target="_blank">
                 <i data-lucide="message-circle" style="width:20px;height:20px;"></i> Connect on WhatsApp
             </a>
         </div>
     </div>
 </div>
-<!-- ═══════════ FAQ ═══════════ -->
-<!-- ═══════════ FAQ SECTION (BULLETPROOF) ═══════════ -->
+<!-- ═══════════ FAQ SECTION (BULLETPROOF & MOBILE FRIENDLY) ═══════════ -->
 <section id="faq" style="background:#030712; padding: 100px 20px; border-top: 1px solid #111726;">
     <style>
         .faq-container { max-width: 800px; margin: 0 auto; }
@@ -1749,6 +1330,7 @@
             color: #ffffff;
             margin: 0;
             font-family: 'Syne', sans-serif;
+            line-height: 1.4;
         }
 
         .faq-icon-box {
@@ -1775,7 +1357,7 @@
         }
 
         .faq-answer.is-open {
-            max-height: 300px;
+            max-height: 500px;
             border-top: 1px solid #1e293b;
         }
 
@@ -1787,10 +1369,28 @@
             line-height: 1.75;
         }
 
+        /* MOBILE RESPONSIVE FIXES */
         @media (max-width: 640px) {
-            .faq-btn { padding: 18px 20px; }
-            .faq-text { padding: 18px 20px; }
-            .faq-question { font-size: 15px; }
+            #faq {
+                padding: 60px 16px !important;
+            }
+            .faq-btn { 
+                padding: 16px 18px; 
+                gap: 12px;
+            }
+            .faq-text { 
+                padding: 16px 18px; 
+                font-size: 14px;
+                line-height: 1.6;
+            }
+            .faq-question { 
+                font-size: 15px; 
+            }
+            .faq-icon-box {
+                width: 28px;
+                height: 28px;
+                font-size: 16px;
+            }
         }
     </style>
 
@@ -1955,6 +1555,59 @@ function toggleFaq(btn) {
             transform: scale(1.1);
             box-shadow: 0 15px 30px rgba(37, 211, 102, 0.6);
         }
+
+        .footer-cta-box {
+            background: linear-gradient(135deg, #1e293b, #0f172a); 
+            border: 1px solid #2563eb; 
+            border-radius: 18px; 
+            padding: 24px 20px; 
+            margin-bottom: 36px; 
+            text-align: center; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .footer-cta-btn {
+            background: #2563eb; 
+            color: #ffffff !important; 
+            padding: 12px 24px; 
+            border-radius: 10px; 
+            font-size: 14px; 
+            font-weight: 700; 
+            text-decoration: none; 
+            display: inline-block; 
+            transition: background 0.2s ease;
+        }
+
+        /* MOBILE RESPONSIVE FIXES */
+        @media (max-width: 640px) {
+            footer {
+                padding: 40px 16px 24px !important;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+                margin-bottom: 32px;
+            }
+            .footer-cta-box {
+                padding: 20px 16px;
+                border-radius: 14px;
+            }
+            .footer-cta-btn {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+            .wa-float {
+                bottom: 16px;
+                right: 16px;
+                width: 50px;
+                height: 50px;
+            }
+            .wa-float svg {
+                width: 24px;
+                height: 24px;
+            }
+        }
     </style>
 
     <div style="max-width:1200px; margin:0 auto;">
@@ -1998,16 +1651,15 @@ function toggleFaq(btn) {
         </div>
 
         <!-- CTA (FULL WIDTH - MOBILE OPTIMIZED) -->
-        <div style="background: linear-gradient(135deg, #1e293b, #0f172a); border: 1px solid #2563eb; border-radius: 18px; padding: 24px 20px; margin-bottom: 36px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+        <div class="footer-cta-box">
             <h3 style="color:#ffffff; font-size:18px; font-weight:800; margin:0 0 6px; font-family:'Syne', sans-serif;">
                 Start Your Project 
             </h3>
             <p style="color:#94a3b8; font-size:14px; margin:0 0 18px;">
                 Get a fast reply within 10–30 minutes
             </p>
-            <a href="https://wa.me/919619203151?text=Hi,%20I’m%20interested%20in%20a%20premium%20website.%20Can%20you%20share%20details?"
-               style="background:#2563eb; color:#ffffff; padding:12px 24px; border-radius:10px; font-size:14px; font-weight:700; text-decoration:none; display:inline-block; transition:background 0.2s ease;">
-               Chat on WhatsApp
+            <a href="https://wa.me/919619203151?text=Hi,%20I’m%20interested%20in%20a%20premium%20website.%20Can%20you%20share%20details?" class="footer-cta-btn" target="_blank">
+                Chat on WhatsApp
             </a>
         </div>
 
@@ -2034,7 +1686,6 @@ function toggleFaq(btn) {
 <a href="https://wa.me/919619203151?text=Hi,%20I’m%20interested%20in%20a%20website." class="wa-float" title="Chat on WhatsApp" target="_blank">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
-
 <!-- ═══════════ MASTER SCRIPT ═══════════ -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -2043,23 +1694,29 @@ document.addEventListener("DOMContentLoaded", function() {
         lucide.createIcons();
     }
 
-    // 2. Mobile Menu Toggle
+    // 2. Mobile Menu Toggle & Body Scroll Lock
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
+    
     if (hamburger && mobileMenu) {
         hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('open');
+            const isOpen = hamburger.classList.toggle('open');
             mobileMenu.classList.toggle('open');
+            // Prevent background page scrolling when menu is active
+            document.body.style.overflow = isOpen ? 'hidden' : '';
         });
+
+        // Close menu on navigation link click
         document.querySelectorAll('.mm-link, .mm-wa').forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('open');
                 mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
             });
         });
     }
 
-    // 3. Scroll Reveal Animations
+    // 3. Smooth Scroll Reveal Animations (IntersectionObserver)
     if ('IntersectionObserver' in window) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -2068,19 +1725,32 @@ document.addEventListener("DOMContentLoaded", function() {
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1 });
+        }, { 
+            threshold: 0.1,
+            rootMargin: "0px 0px -40px 0px"
+        });
 
         document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    } else {
+        // Fallback for older browsers
+        document.querySelectorAll('.fade-up').forEach(el => el.classList.add('visible'));
     }
 
-    // 4. Navbar Background Shadow
-    window.addEventListener('scroll', () => {
-        const nav = document.querySelector('nav');
-        if (nav) {
-            nav.style.boxShadow = window.scrollY > 20 ? '0 10px 30px rgba(0,0,0,0.5)' : 'none';
-        }
-    });
+    // 4. Dynamic Navbar Styling on Scroll
+    const nav = document.querySelector('nav');
+    if (nav) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                nav.style.boxShadow = '0 10px 30px rgba(0,0,0,0.8)';
+                nav.style.borderBottomColor = 'rgba(30, 41, 59, 0.8)';
+            } else {
+                nav.style.boxShadow = 'none';
+                nav.style.borderBottomColor = '#111726';
+            }
+        }, { passive: true });
+    }
 });
 </script>
 </body>
 </html>
+
